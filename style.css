@@ -1,114 +1,137 @@
-@import url(https://fonts.googleapis.com/css?family=Lato:300italic);
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lato:wght@300;400&display=swap');
 
-html,
-body {
+html, body {
   width: 100%;
   height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Scroll bars hatane ke liye */
 }
 
 body {
-  background: black;
+  /* Ek halka sa radial gradient background black se dark maroon tak premium look ke liye */
+  background: radial-gradient(circle, #1a1a1a 0%, #000000 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #cake {
   display: block;
   position: relative;
-  margin: -10em auto 0 auto;
+  margin-top: -50px;
+  filter: drop-shadow(0 0 10px rgba(168, 134, 121, 0.2));
 }
 
-/* ============================================== Candle
-*/
+/* ============================================== Candle */
 
 .candle {
-  background: tan;
+  background: #e1c191; /* Better Gold/Tan color */
   border-radius: 10px;
   position: absolute;
   top: 228px;
   left: 50%;
-  margin-left: -2.4px;
-  margin-top: -8.33333333px;
+  margin-left: -2.5px;
   width: 5px;
   height: 35px;
-  transform: translateY(-300px);
+  transform: translateY(-500px);
   backface-visibility: hidden;
-  animation: in 500ms 6s ease-out forwards;
+  animation: in 800ms 6s ease-out forwards;
+  box-shadow: inset 2px 0px 5px rgba(0,0,0,0.1);
+  z-index: 10;
 }
-.candle:after,
-.candle:before {
-  /* background: rgba(255, 0, 0, 0.4); */
-  background: whitesmoke;
+
+/* Candle stripes */
+.candle:after, .candle:before {
+  background: #ff5e5e; /* Red stripes for a classic birthday look */
   content: "";
   position: absolute;
   width: 100%;
-  height: 2.22222222px;
-}
-.candle:after {
-  top: 25%;
-  left: 0;
-}
-.candle:before {
-  top: 45%;
-  left: 0;
+  height: 3px;
 }
 
-/* ============================================== Fire
-*/
+.candle:after { top: 25%; }
+.candle:before { top: 65%; }
+
+/* ============================================== Fire Logic */
 
 .fire {
-  border-radius: 100%;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
   position: absolute;
-  top: -20px;
+  top: -22px;
   left: 50%;
-  margin-left: -2.6px;
-  width: 6.66666667px;
-  height: 18px;
-}
-.fire:nth-child(1) {
-  animation: fire 2s 6.5s infinite;
-}
-.fire:nth-child(2) {
-  animation: fire 1.5s 6.5s infinite;
-}
-.fire:nth-child(3) {
-  animation: fire 1s 6.5s infinite;
-}
-.fire:nth-child(4) {
-  animation: fire 0.5s 6.5s infinite;
-}
-.fire:nth-child(5) {
-  animation: fire 0.2s 6.5s infinite;
+  margin-left: -4px;
+  width: 8px;
+  height: 20px;
+  filter: blur(0.5px);
 }
 
-/* ============================================== Animation Fire
-*/
+.fire:nth-child(1) { animation: fire 2s 6.8s infinite; }
+.fire:nth-child(2) { animation: fire 1.5s 6.8s infinite; }
+.fire:nth-child(3) { animation: fire 1s 6.8s infinite; }
+.fire:nth-child(4) { animation: fire 0.5s 6.8s infinite; }
+.fire:nth-child(5) { animation: fire 0.2s 6.8s infinite; }
+
+/* ============================================== Animations */
 
 @keyframes fire {
   0%, 100% {
-    background: rgba(254, 248, 97, 0.5);
-    box-shadow: 0 0 40px 10px rgba(248, 233, 209, 0.2);
-    transform: translateY(0) scale(1);
+    background: #ffda3e;
+    box-shadow: 0 0 20px 5px #ff5e00, 0 0 40px 10px rgba(255, 106, 0, 0.3);
+    transform: translateY(0) scale(1) rotate(-2deg);
   }
   50% {
-    background: rgba(255, 50, 0, 0.1);
-    box-shadow: 0 0 40px 20px rgba(248, 233, 209, 0.2);
-    transform: translateY(-20px) scale(0);
+    background: #ffa600;
+    box-shadow: 0 0 30px 10px #ff1100, 0 0 50px 15px rgba(255, 60, 0, 0.3);
+    transform: translateY(-5px) scale(1.1) rotate(2deg);
   }
 }
 
 @keyframes in {
-  to {
-    transform: translateY(0);
-  }
+  to { transform: translateY(0); }
 }
 
+/* ============================================== Text Styling */
+
 .text {
-  /* color: #8b6a60; */
-  color: wheat;
+  margin-top: 20px;
+  z-index: 5;
+}
+
+.text h1 {
+  color: #fefae9;
+  font-family: 'Dancing Script', cursive; /* Premium handwriting font */
+  font-size: 3.5em;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(254, 250, 233, 0.5), 0 5px 15px rgba(0,0,0,0.5);
+  opacity: 0;
+  animation: fadeIn 2s 7.5s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* ============================================== Music Hint UI */
+
+.music-hint {
+  position: fixed;
+  bottom: 30px;
+  color: rgba(255, 255, 255, 0.4);
   font-family: 'Lato', sans-serif;
-  font-weight: 300;
-  /* font-style:italic; */
-  text-align: center;
-  h1 {
-    font-size: 1.4em;
-  }
-}  
+  letter-spacing: 1px;
+  font-size: 12px;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 8px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.music-hint:hover {
+  color: white;
+  border-color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
