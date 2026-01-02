@@ -3,50 +3,95 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday</title>
-<link rel="stylesheet" href="style.css">
+<title>Birthday Cake</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  background:radial-gradient(circle,#1a1a1a,#000);
+  overflow:hidden;
+}
+
+/* ===== Cake ===== */
+.cake-wrapper{
+  position:relative;
+  width:220px;
+}
+
+.cake{
+  width:100%;
+  height:160px;
+  background:linear-gradient(#d7b29d,#a88679);
+  border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,.6);
+}
+
+/* ===== Candle ===== */
+.candle{
+  position:absolute;
+  top:-45px;
+  left:50%;
+  transform:translateX(-50%);
+  width:8px;
+  height:40px;
+  background:#e1c191;
+  border-radius:10px;
+}
+
+.candle::before,
+.candle::after{
+  content:"";
+  position:absolute;
+  width:100%;
+  height:4px;
+  background:#ff5e5e;
+}
+.candle::before{ top:10px;}
+.candle::after{ top:24px;}
+
+/* ===== Fire ===== */
+.fire{
+  position:absolute;
+  top:-22px;
+  left:50%;
+  transform:translateX(-50%);
+  width:14px;
+  height:22px;
+  background:#ffb703;
+  border-radius:50%;
+  animation:flicker 1s infinite;
+  box-shadow:0 0 20px #ff7a00;
+}
+
+@keyframes flicker{
+  0%,100%{transform:translateX(-50%) scale(1);}
+  50%{transform:translateX(-50%) scale(1.2);}
+}
+
+/* ===== Text ===== */
+h1{
+  margin-top:25px;
+  font-family:cursive;
+  color:#fff;
+}
+</style>
 </head>
 
 <body>
 
-<audio id="birthdaySong" loop>
-    <source src="APNA_GITHUB_RAW_LINK_YAHAN_DALEIN.mp3" type="audio/mpeg">
-</audio>
-
-<div class="music-hint">Tap anywhere to play music 🎵</div>
-
-<!-- CAKE WRAPPER -->
 <div class="cake-wrapper">
-
-    <!-- Candle -->
-    <div class="candle">
-        <div class="fire"></div>
-        <div class="fire"></div>
-        <div class="fire"></div>
-        <div class="fire"></div>
-        <div class="fire"></div>
-    </div>
-
-    <!-- SVG Cake -->
-    <svg id="cake" viewBox="0 0 200 500">
-        <!-- SAME SVG PATHS (tumhara original) -->
-        <!-- ❗ SVG bilkul same rakha hai -->
-        <!-- Sirf positioning CSS se fix hui hai -->
-    </svg>
-
+  <div class="candle">
+    <div class="fire"></div>
+  </div>
+  <div class="cake"></div>
 </div>
 
-<div class="text">
-    <h1>Happy Birthday 💖</h1>
-</div>
-
-<script>
-document.body.addEventListener("click", () => {
-    const audio = document.getElementById("birthdaySong");
-    audio.play();
-    document.querySelector(".music-hint").style.display = "none";
-});
-</script>
+<h1>Happy Birthday 🎂</h1>
 
 </body>
 </html>
